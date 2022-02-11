@@ -1,7 +1,12 @@
+import messageReducer from './message-reducer';
+import profileReducer from './profile-reducer';
+import sidebarReducer from './sidebar-reducer';
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';
+
+
 
 let store = {
   _state:{
@@ -37,7 +42,8 @@ let store = {
       ],
       newMessageBody:""
 
-    }
+    },
+    sidebar: {}
 },
 _callSubScraber() {
   console.log('state changed');
@@ -52,33 +58,13 @@ subscribe (observer)  {
 
 
 dispatch(action){
-  if(action.type===ADD_POST){
-    let newPost ={
-      id:5,
-      message:this._state.profilePage.newPostText,
-      likesCount:0
+  this._state.profilePage=profileReducer(this._state.profilePage, action)
+  this._state.messagePage=messageReducer(this._state.messagePage, action)
+  this._state.sidebar=sidebarReducer(this._state.sidebar, action)
 
-  };
-  this._state.profilePage.posts.push(newPost);
-  this._state.profilePage.newPostText= '';
   this._callSubScraber(this._state);
 
-  } else if(action.type=== UPDATE_NEW_POST_TEXT){
-    this._state.profilePage.newPostText=action.newText;
-    this._callSubScraber(this._state);
-
-  } else if (action.type === UPDATE_NEW_MESSAGE_BODY){
-    this._state.messagePage.newMessageBody = action.body;
-    this._callSubScraber(this._state);
-
-  }else if (action.type === SEND_MESSAGE){
-    let body=this._state.messagePage.newMessageBody;
-    this._state.messagePage.newMessageBody='';
-    this._state.messagePage.messages.push({id:4, message: body } );
-    this._callSubScraber(this._state);
-
-  }
-
+  
 }
 
 }
