@@ -2,10 +2,10 @@ import React from 'react';
 import {  Route, Router, Routes, Link } from 'react-router-dom';
 import './App.css';
 import Dialoge from './components/Dialoge/Dialoge';
+import DialogeContainer from './components/Dialoge/DialogeContainer';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
-import { addPost, updateNewPostText } from './redux/state'
  
 const App = (props) => {
 
@@ -18,10 +18,8 @@ const App = (props) => {
    
     <div className='app-wrapper-content'>
     <Routes >
-      <Route exact path="/dialoge" element={< Dialoge store={props.store} dialogsData={props.state.messagePage.dialogsData} 
-      messages={props.state.messagePage.messages} />} />
-      <Route path="/profile" element={< Profile   profilePage={props.state.profilePage}
-                                                  dispatch={props.dispatch}/>} />
+      <Route exact path="/dialoge" element={< DialogeContainer store={props.store}/>}/>
+      <Route path="/profile" element={< Profile store={props.store}/>} />
 
     </Routes>
 

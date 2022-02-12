@@ -3,8 +3,6 @@ import profileReducer from './profile-reducer';
 import sidebarReducer from './sidebar-reducer';
 
 
-
-
 let store = {
   _state:{
     profilePage:{
@@ -14,9 +12,6 @@ let store = {
           
           ],
            newPostText:'it-komosutra.com'
-
-     
-           
 
     },
     messagePage:{
@@ -59,9 +54,7 @@ dispatch(action){
   this._state.messagePage=messageReducer(this._state.messagePage, action)
   this._state.sidebar=sidebarReducer(this._state.sidebar, action)
 
-  this._callSubScraber(this._state);
-
-  
+  this._callSubScraber(this._state)  
 }
 
 }
