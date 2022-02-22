@@ -1,27 +1,26 @@
-import React from 'react';
-import s from './Dialoge.module.css';
-import DialogItem from './DialogItem/DialogItem';
-import Message from './Message/Message';
-import { updateNewMessageBodyCreator } from './../../redux/message-reducer';
-import { sendMessageCreator } from './../../redux/message-reducer';
+import { updateNewMessageBodyCreator, sendMessageCreator } from './../../redux/message-reducer';
 import Dialoge from './Dialoge';
-
-const DialogeContainer = (props) =>{
-  let state= props.store.getState().messagePage;  
-
- 
-
-    let onSendMessageClick = () => {
-   props.store.dispatch(sendMessageCreator());
+import { connect } from 'react-redux';
 
 
-  } 
-  let onNewMessageChange = (body) => {
-      props.store.dispatch(updateNewMessageBodyCreator(body));
+let mapStateToProps = (state) =>{
+  return{
+    messagePage: state.messagePage
+  }
 }
+let mapDispatchToProps = (dispatch) => {
+
+  return {
+    sendMessage: () => {
+      dispatch(sendMessageCreator());
+
+    },
+    updateNewMessageBody: (body) => {
+      dispatch(updateNewMessageBodyCreator(body));
+    }
  
-    return (
-     <Dialoge updateNewMessageBody={onNewMessageChange} sendMessage={onSendMessageClick} 
-     messagePage={state} /> )
+  }
 }
-export default DialogeContainer;
+const DilogeContainer = connect(mapStateToProps,mapDispatchToProps)(Dialoge);
+
+export default DilogeContainer;

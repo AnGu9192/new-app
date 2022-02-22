@@ -4,10 +4,10 @@ import messageReducer from './message-reducer';
 import sidebarReducer from './sidebar-reducer';
 
 let reducers = combineReducers({
-    profileReducer: profileReducer,
-    messageReducer: messageReducer,
-    sidebarReducer: sidebarReducer
+    profilePage: profileReducer,
+    messagePage: messageReducer,
+    sidebar: sidebarReducer
 })
 let store = createStore(reducers)
-
+window.store=store;
 export default store;

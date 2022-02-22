@@ -1,7 +1,6 @@
 import React from 'react';
-import {  Route, Router, Routes, Link } from 'react-router-dom';
+import {  Route,  Routes } from 'react-router-dom';
 import './App.css';
-import Dialoge from './components/Dialoge/Dialoge';
 import DialogeContainer from './components/Dialoge/DialogeContainer';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
@@ -18,8 +17,8 @@ const App = (props) => {
    
     <div className='app-wrapper-content'>
     <Routes >
-      <Route exact path="/dialoge" element={< DialogeContainer store={props.store}/>}/>
-      <Route path="/profile" element={< Profile store={props.store}/>} />
+      <Route exact path="/dialoge" element={< DialogeContainer   />} />
+      <Route path="/profile" element={< Profile />} />
 
     </Routes>
 
