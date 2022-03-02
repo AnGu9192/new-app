@@ -1,4 +1,7 @@
-
+.userPhoto{
+    height: 100px;
+    width: 100px;
+}
 .name{
     font-size: 15px;
     color: orange;
